@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://src/Assets/enemy.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 60, 15 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -7.5414, -48.1262, 6.14477, -48.0082, 16.0555, -44.9407, 27.8539, -38.5695, 38.3545, -29.1308, 48.3832, -14.8547, 53.2205, -1.16848, 54.5183, 11.1019, 54.9903, 21.4845, 51.7411, 30.7999, 47.5695, 36.6932, 41.0141, 41.8581, 32.6708, 45.0364, 23.1356, 47.0229, -21.9787, 47.297, -32.4905, 45.545, -41.167, 41.7074, -49.0926, 34.616, -55.016, 22.6859, -53.983, 3.09688, -45.8914, -20.926, -38.6386, -28.2838, -27.9172, -38.2694, -14.2526, -45.7324 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 54, 35 )
+
+[node name="Enemy" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource( 1 )
+
+[node name="StompDetector" type="Area2D" parent="."]
+modulate = Color( 0.054902, 0.137255, 1, 1 )
+position = Vector2( 0.3909, -60.854 )
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
+position = Vector2( 0, -19 )
+shape = SubResource( 1 )
+
+[node name="enemy" type="Sprite" parent="."]
+position = Vector2( 0.3909, -47.854 )
+texture = ExtResource( 2 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="enemy"]
+occluder = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.3909, -35.854 )
+shape = SubResource( 3 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0.3909, -15.854 )
+scale = Vector2( 1, 1.55 )
+rect = Rect2( -50, -50, 100, 60 )
+process_parent = true
+physics_process_parent = true
+[connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetection_body_entered"]
