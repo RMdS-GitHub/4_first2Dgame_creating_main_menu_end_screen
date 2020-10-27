@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://src/Screens/EndScreen.gd" type="Script" id=1]
 [ext_resource path="res://src/Assets/ui_theme.tres" type="Theme" id=3]
 [ext_resource path="res://src/Assets/background.png" type="Texture" id=4]
 [ext_resource path="res://src/User_Interface/ChangeSceneButton.tscn" type="PackedScene" id=5]
@@ -12,6 +13,7 @@ anchor_bottom = 1.0
 margin_top = 7.13525
 margin_bottom = 7.13525
 theme = ExtResource( 3 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
