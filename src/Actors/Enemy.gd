@@ -5,7 +5,7 @@ func _ready() -> void:
 	_velocity.x = -speed.x
 	
 	
-export var score: = 100
+#export var score: = 100
 	
 	
 func _on_StompDetection_body_entered(body: Node) -> void:
@@ -28,4 +28,10 @@ func _physics_process(delta: float) -> void:
 	
 func die() -> void:
 	queue_free()
-	PlayerData.score += score
+	#PlayerData.score += score
+	
+	
+func decide_direction(player_global_position: Vector2) -> void:
+	var direction: float = sign(player_global_position.x - global_position.x)
+	if direction > 0.0:
+		_velocity.x *= -1.0
